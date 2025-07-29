@@ -1,5 +1,5 @@
-import { topologicalSort } from "../util/Algorithms";
-import type { UnionToIntersection } from "../util/Types";
+import { topologicalSort } from "../../util/Algorithms";
+import type { UnionToIntersection } from "../../util/Types";
 
 interface Definition {
   initialize?: () => void;

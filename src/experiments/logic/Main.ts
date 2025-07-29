@@ -1,4 +1,4 @@
-import { construct, LogicalClass } from "./data/Logic";
+import { construct, LogicalClass } from "./Logic";
 
 const Dependency1 = LogicalClass("Dependency1", [], {
   foo: 1,
