@@ -5,15 +5,15 @@ test("event subscription", () => {
   const TestEvent = createEvent();
   const fn = mock();
 
-  class Subscriber {
+  class Listener {
     @Subscribe(TestEvent)
     listen() {
       fn();
     }
   }
 
-  const subscriber = new Subscriber();
-  emit(subscriber, TestEvent);
+  const listener = new Listener();
+  emit(listener, TestEvent);
   expect(fn).toHaveBeenCalled();
 });
 

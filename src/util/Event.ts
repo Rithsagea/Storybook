@@ -1,18 +1,17 @@
+import { getMetadata } from "./Metadata";
+
 interface Event<_> {
   id: symbol;
 }
 
-export function createEvent<D = undefined>(): Event<D> {
-  return { id: Symbol() };
+export function createEvent<D = undefined>(name?: string): Event<D> {
+  return { id: Symbol(name) };
 }
 
-type SubscriptionData = Record<symbol, any[]>; // TODO update value type to method
-
+type SubscriptionData = Record<symbol, any[]>; // TODO: update value type to method
 const SUBSCRIPTION_SYMBOL = Symbol("subscriptions");
-function getSubscriptionData(target: object): SubscriptionData {
-  if (!Reflect.has(target, SUBSCRIPTION_SYMBOL))
-    Reflect.set(target, SUBSCRIPTION_SYMBOL, {});
-  return Reflect.get(target, SUBSCRIPTION_SYMBOL);
+function getSubscriptionData(target: object) {
+  return getMetadata<SubscriptionData>(target, SUBSCRIPTION_SYMBOL, {});
 }
 
 interface SubscribedFunction<D> extends PropertyDescriptor {

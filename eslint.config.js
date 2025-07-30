@@ -23,6 +23,8 @@ export default defineConfig([
         "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
+      "@typescript-eslint/ban-ts-comment": "off",
+      "no-warning-comments": "warn",
     },
   },
 ]);
