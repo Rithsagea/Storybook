@@ -46,6 +46,10 @@ export class BiMap<K, V> {
     return this.forward.get(k);
   }
 
+  has(k: K) {
+    return this.forward.has(k);
+  }
+
   inverse(): BiMap<V, K> {
     return new BiMap(this.backward, this.forward);
   }
