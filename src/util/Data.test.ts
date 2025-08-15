@@ -1,19 +1,7 @@
-import { expect, test } from "bun:test";
-import { deserialize, Property, serialize, type Context } from "./Data";
+import { test } from "bun:test";
+import { Property, type Context } from "./Data";
 import { BiMap } from "./Algorithms";
-import type { Constructor } from "./Types";
-
-function testSerialize<T extends object>(
-  source: T,
-  target: any,
-  constructor: Constructor<T>,
-) {
-  const forwardResult = serialize(source);
-  expect(forwardResult).toStrictEqual(target);
-
-  const backwardResult = deserialize(target, constructor);
-  expect(backwardResult).toStrictEqual(source);
-}
+import { testSerialize } from "./Test";
 
 class Struct {
   @Property.Primitive stringField: string = "";

@@ -1,29 +1,29 @@
 import assert from "assert";
-import { Property } from "../../util/Data";
-import type { Constructor } from "../../util/Types";
+import { Property } from "./Data";
+import type { Constructor } from "./Types";
 
 export class Model {
   @Property.Primitive
   readonly id: string;
 
   // TRANSIENT
-  readonly axioms: Record<symbol, object> = {};
+  private readonly axioms: Record<symbol, object> = {};
 
   constructor(id: string = crypto.randomUUID()) {
     this.id = id;
   }
 
-  assume<S extends object>(axiom: Axiom<S, typeof this>) {
+  assume<S extends object>(axiom: Axiom<S, typeof this>): S {
     const { Id, Target, Type } = axiom;
     assert(this.constructor === Target);
     if (!this.axioms[Id]) this.axioms[Id] = new Type();
-    return this.axioms[Id];
+    return this.axioms[Id] as S;
   }
 
-  suppose<S extends object>(axiom: Axiom<S, typeof this>) {
+  suppose<S extends object>(axiom: Axiom<S, typeof this>): S | undefined {
     const { Id, Target } = axiom;
     assert(this.constructor === Target);
-    return this.axioms[Id];
+    return this.axioms[Id] as S;
   }
 }
 
