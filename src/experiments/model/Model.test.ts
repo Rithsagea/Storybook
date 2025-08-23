@@ -1,6 +1,6 @@
 import { Axiom, Model } from "./Model";
 import { expect, test } from "bun:test";
-import { testSerialize } from "./Test";
+import { testSerialize } from "../../util/Test";
 
 class Multitool extends Model {}
 class Omnitool extends Model {}

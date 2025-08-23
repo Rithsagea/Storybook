@@ -9,3 +9,13 @@ export function isPrimitive(x: unknown): x is Primitive {
 }
 
 export type Constructor<T extends object = object> = new () => T;
+
+export function EnumMap<K extends string, V>(
+  keys: readonly K[],
+  fn: (key: K) => V,
+): Record<K, V> {
+  return keys.reduce(
+    (res, key) => ({ ...res, [key]: fn(key) }),
+    {} as Record<K, V>,
+  );
+}

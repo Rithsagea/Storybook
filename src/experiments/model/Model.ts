@@ -1,6 +1,6 @@
 import assert from "assert";
-import { Property } from "./Data";
-import type { Constructor } from "./Types";
+import { Property } from "../../util/Data";
+import type { Constructor } from "../../util/Types";
 
 export class Model {
   @Property.Primitive

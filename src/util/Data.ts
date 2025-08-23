@@ -69,6 +69,7 @@ export function deserialize<T extends object>(
     if (value === undefined) continue;
     (res as any)[label] = property.deserialize(value);
   }
+
   return res;
 }
 
